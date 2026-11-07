@@ -115,6 +115,14 @@ Maior diferença de Brier entre regionais: 0.1784.
 - M-10: limiares de nível (P75, P95) = 0.3409, 0.4089.
 
 ## Revisão humana
-- [ ] Relatório lido por: ______  Data: ______
-- [ ] Regional com exclusão muito acima das demais foi discutida.
+- [x] Relatório lido por: Nicholas  Data: Cristofaro
+- [x] Regional com exclusão muito acima das demais foi discutida.
 - Decisões e justificativas:
+  1. **Publicar o baseline sazonal como primeira versão.** Nenhum candidato passou na M-01. A regressão logística teve Brier menor (0,168 contra 0,171), mas AUC menor (0,523 contra 0,528). A árvore teve o menor Brier (0,166), mas AUC abaixo do acaso (0,498) e 108 falhas na M-06. Pela regra de aceite (RNF09), o baseline é publicado e a página declara que a chuva aparece só como informação.
+  2. **O sinal é fraco, inclusive no baseline.** AUC de 0,528 no teste de 2025 fica perto do acaso. No período seco (M-05), a AUC é 0,446. A página e a "Como funciona" não devem sugerir mais precisão do que isso; a frase de nível compara com o histórico e não promete acerto.
+  3. **Calibração (M-03): o modelo superestima nas faixas altas.** Nas duas faixas mais altas, o previsto foi 0,331 e 0,385, e o observado foi 0,175 e 0,219. A prevalência caiu de cerca de 0,31 em 2022 para 0,17–0,25 em 2024–2025, e o baseline aprende as taxas de 2021–2024. Consequência: "elevado" pode aparecer mais vezes do que o dado de 2025 justifica. Erro do lado conservador; registrado como limitação e revisto no próximo lote.
+  4. **Viés de exclusão:** as taxas por regional ficam entre 6,4% e 9,4%, sem regional muito acima das demais. As 634 vistorias sem regional não podem ser atribuídas a nenhuma regional e ficam fora.
+  5. **Lacuna em 2023-S2:** só 5 vistorias válidas no segundo semestre de 2023 (níveis em branco no lote da URBEL). O treino não tem esse período; registrado em `docs/decisoes.md`.
+  6. **M-04:** nenhuma regional pior que o baseline (o modelo é o próprio baseline). Pampulha tem o maior Brier (0,241), com só 49 vistorias no teste.
+  7. **O conjunto de teste de 2025 foi usado uma única vez.** Nenhuma escolha de modelo ou de atributo foi alterada depois de ver o resultado. Qualquer mudança futura de atributos fica registrada no relatório da versão seguinte.
+  8. **Próxima revisão:** no próximo lote semestral da URBEL (primeira verificação prospectiva) ou depois da comparação com o INMET (D-09), o que vier primeiro.
