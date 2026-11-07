@@ -1,0 +1,81 @@
+{
+ "versao_modelo": "modelo-2026.11.07",
+ "tipo_modelo": "baseline",
+ "baseline_em_uso": true,
+ "versao_dados": "dados-e89b27388420",
+ "metricas_teste": {
+  "baseline": {
+   "auc": 0.5279532023089609,
+   "brier": 0.17114729870203788,
+   "n": 1342
+  },
+  "logistica": {
+   "auc": 0.5231377130291369,
+   "brier": 0.16830136594842351,
+   "n": 1342
+  },
+  "arvore": {
+   "auc": 0.4979676333150082,
+   "brier": 0.16599776746460806,
+   "n": 1342
+  }
+ },
+ "periodo_treino": [
+  "2021-01-04",
+  "2024-12-30"
+ ],
+ "periodo_teste": [
+  "2025-01-02",
+  "2025-12-30"
+ ],
+ "limiares": [
+  0.3409236315620292,
+  0.4089044049686796
+ ],
+ "explicacao": {
+  "tipo": "taxa por regional",
+  "valores": {
+   "BARREIRO": 0.319913330808455,
+   "CENTRO-SUL": 0.209768856355164,
+   "LESTE": 0.3080337920130593,
+   "NORDESTE": 0.3183798088207024,
+   "NOROESTE": 0.1964520710479533,
+   "NORTE": 0.3220252592504398,
+   "OESTE": 0.13502914892695722,
+   "PAMPULHA": 0.2769475395023264,
+   "VENDA NOVA": 0.24573779665268589
+  }
+ },
+ "regional_ponto": {
+  "BARREIRO": "Cercadinho (F501)",
+  "CENTRO-SUL": "Cercadinho (F501)",
+  "OESTE": "Cercadinho (F501)",
+  "LESTE": "Pampulha (A521)",
+  "NORDESTE": "Pampulha (A521)",
+  "NOROESTE": "Pampulha (A521)",
+  "NORTE": "Pampulha (A521)",
+  "PAMPULHA": "Pampulha (A521)",
+  "VENDA NOVA": "Pampulha (A521)"
+ },
+ "faixas_72h_mm": [
+  0.0,
+  10.0,
+  30.0,
+  60.0,
+  100.0
+ ],
+ "historico": [
+  {
+   "versao": "modelo-2026.11.07",
+   "publicada_em": "2026-11-07T21:49:33+00:00",
+   "tipo": "baseline",
+   "baseline_em_uso": true,
+   "versao_dados": "dados-e89b27388420",
+   "auc_teste": 0.5279532023089609,
+   "brier_teste": 0.17114729870203788
+  }
+ ],
+ "atribuicao": "Dados meteorológicos: Open-Meteo.com (CC BY 4.0), modelo ECMWF IFS.",
+ "contato": null,
+ "comparacao_inmet": null
+}

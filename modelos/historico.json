@@ -1,0 +1,11 @@
+[
+  {
+    "versao": "modelo-2026.11.07",
+    "publicada_em": "2026-11-07T21:49:33+00:00",
+    "tipo": "baseline",
+    "baseline_em_uso": true,
+    "versao_dados": "dados-e89b27388420",
+    "auc_teste": 0.5279532023089609,
+    "brier_teste": 0.17114729870203788
+  }
+]
