@@ -115,7 +115,7 @@ Maior diferença de Brier entre regionais: 0.1784.
 - M-10: limiares de nível (P75, P95) = 0.3409, 0.4089.
 
 ## Revisão humana
-- [x] Relatório lido por: Nicholas  Data: Cristofaro
+- [x] Relatório lido por: Nicholas Cristofaro  Data: 07/11/2026
 - [x] Regional com exclusão muito acima das demais foi discutida.
 - Decisões e justificativas:
   1. **Publicar o baseline sazonal como primeira versão.** Nenhum candidato passou na M-01. A regressão logística teve Brier menor (0,168 contra 0,171), mas AUC menor (0,523 contra 0,528). A árvore teve o menor Brier (0,166), mas AUC abaixo do acaso (0,498) e 108 falhas na M-06. Pela regra de aceite (RNF09), o baseline é publicado e a página declara que a chuva aparece só como informação.
