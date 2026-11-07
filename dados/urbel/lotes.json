@@ -1,0 +1,10 @@
+{
+  "fonte": "URBEL. Vistorias realizadas em assentamentos de interesse social com classificação de risco. Portal de Dados Abertos da PBH, https://dados.pbh.gov.br/dataset/vistorias-realizadas-em-assentamentos-de-interesse-social-com-classificacao-de-risco",
+  "lotes": [
+    {"arquivo": "vistorias_2021.csv", "sha256": "3ac0ef83543e20ce67820a12d099c82abfaeaab4de4b2a5c8df3196c9fbea571", "nota": "recurso 2021_09 (1995 a set/2021), baixado em 07/11/2026"},
+    {"arquivo": "vistorias_2022.csv", "sha256": "2f9f7f4d885a1b5d1ba62039f689b1fe96a004afc749cef43473bdacf13c3f5f", "niveis_extras": {"Muito baixo": "Baixo"}, "nota": "2 linhas com 'Muito baixo', nível fora dos cinco oficiais; tratado como Baixo (rótulo 0 nos dois casos). Decisão registrada em docs/decisoes.md"},
+    {"arquivo": "vistorias_2023.csv", "sha256": "b0f10f7f329dab6250b06bc49f983483b070cbde42f1ab09f917980b52790002", "nota": "baixado em 07/11/2026"},
+    {"arquivo": "vistorias_2024.csv", "sha256": "27304ae9785d21ef2ae4a59205b87125ced078e475b9084e270f7e1b32b1f14b", "ordem_colunas": ["cod_vistoria", "data", "regional", "nivel_risco"], "nota": "cabeçalho com REGIONAL e DATA_EXECUCAO_VISTORIA trocados em relação aos dados; ordem real informada aqui"},
+    {"arquivo": "vistorias_2025.csv", "sha256": "ba6a3a95f08e578b984561cc0b07b1cf6572f3f9288aaeae20e9d12343634608", "nota": "cabeçalho com nomes novos (DATA_EEXECUÇÃO, NÍVEL RISCO GEOLOGICO), aceitos como variações conhecidas"}
+  ]
+}
