@@ -1,0 +1,38 @@
+name: estimativas
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: estimativas
+  cancel-in-progress: false
+
+jobs:
+  estimar:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacao.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Instalar dependências fixadas
+        run: pip install -r requirements.txt
+      - name: Estimar (etapas 8 a 11)
+        run: python -m alertaencosta.estimar --saida site/estimativas.json
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: publicacao
+        uses: actions/deploy-pages@v4
