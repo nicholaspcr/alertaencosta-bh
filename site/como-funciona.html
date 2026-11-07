@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Como funciona — AlertaEncosta BH</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <p><a href="index.html">← Voltar para a consulta</a></p>
+    <h1>Como funciona</h1>
+  </header>
+
+  <aside class="aviso" role="note" aria-label="Aviso e canais oficiais">
+    <p><strong>Não é alerta oficial nem laudo técnico.</strong>
+      Defesa Civil: <a href="tel:199">199</a>. URBEL, pela Prefeitura: <a href="tel:156">156</a>.</p>
+  </aside>
+
+  <main>
+    <h2>O que a página mostra</h2>
+    <p>Para cada uma das nove regionais de Belo Horizonte, a página estima a chance de uma
+      vistoria de risco geológico da URBEL ser classificada como risco <em>Alto</em> ou
+      <em>Muito alto</em>, considerando a chuva recente e a época do ano. Ela não prevê
+      deslizamentos e não diz nada sobre uma rua ou casa específica.</p>
+
+    <h2>De onde vêm os dados</h2>
+    <ul>
+      <li><strong>Vistorias:</strong> base “Vistorias realizadas em assentamentos de interesse
+        social com classificação de risco”, publicada pela URBEL no
+        <a href="https://dados.pbh.gov.br">Portal de Dados Abertos da PBH</a>, de 2021 a 2025.</li>
+      <li><strong>Chuva:</strong> estimada por modelo meteorológico (ECMWF IFS, grade de cerca de
+        9 km), obtida no <a href="https://open-meteo.com">Open-Meteo</a>, nos pontos das estações
+        Pampulha (A521) e Cercadinho (F501) do INMET. A chuva é atualizada a cada 3 horas.</li>
+    </ul>
+    <p id="mapeamento"></p>
+
+    <h2>Método</h2>
+    <p>O time treinou três modelos simples e explicáveis com as vistorias de 2021 a 2024 e
+      testou com as de 2025: uma referência sazonal (taxa histórica por regional e mês),
+      uma regressão logística e uma árvore de decisão rasa. Um modelo só vai ao ar se for melhor
+      que a referência sazonal no teste. Se nenhum for, a página usa a própria referência e
+      avisa isso.</p>
+    <p id="modelo-vigente"></p>
+    <p>O nível de atenção compara a estimativa com o histórico: <em>elevado</em> é mais alto que
+      em 3 de cada 4 situações do treino; <em>muito elevado</em>, mais alto que em 19 de cada 20.
+      A faixa de incerteza vem de 200 versões do modelo treinadas com sorteios dos dados.</p>
+    <p>A página mostra “dados insuficientes” em vez de um nível quando a chuva está desatualizada
+      há mais de 48 horas, quando faltam horas demais na série de chuva, quando houve leitura acima
+      do máximo histórico ou quando a regional tem menos de 30 vistorias com chuva parecida.
+      Nunca tratamos chuva ausente como zero.</p>
+
+    <h2 id="titulo-explicacao">Pesos do modelo</h2>
+    <div class="tabela-rolavel"><table id="explicacao"></table></div>
+
+    <h2>Limitações e vieses que reconhecemos</h2>
+    <ol>
+      <li><strong>Viés de seleção no rótulo.</strong> Muitas vistorias são pedidas pelos próprios
+        moradores. O dado mede a procura por vistoria somada à avaliação técnica, e não a ocorrência
+        de deslizamentos.</li>
+      <li><strong>Recorte grosseiro.</strong> A base aberta só traz a regional. Por isso, e para não
+        estigmatizar comunidades, nada é mostrado abaixo da regional.</li>
+      <li><strong>Cadência assimétrica.</strong> A chuva é horária, mas as vistorias são publicadas
+        duas vezes por ano. O modelo só aprende quando sai um novo lote.</li>
+      <li><strong>Volume modesto.</strong> São alguns milhares de vistorias, o que limita a
+        complexidade do modelo.</li>
+      <li><strong>Poucos pontos de chuva.</strong> Usamos dois pontos para a cidade inteira; a chuva
+        sobre uma encosta pode ser bem diferente.</li>
+      <li><strong>Chuva estimada por modelo, não medida.</strong> O modelo meteorológico suaviza
+        picos locais de chuva. <span id="comparacao-inmet">A comparação com os pluviômetros do
+        INMET ainda está em andamento.</span></li>
+    </ol>
+    <p>As vistorias usadas cobrem só assentamentos de interesse social. Mostramos o erro do modelo
+      por regional no relatório de cada versão.</p>
+
+    <h2>Histórico de versões</h2>
+    <div class="tabela-rolavel"><table id="historico"></table></div>
+
+    <h2>Contato</h2>
+    <p>Dúvidas, correções e contestações: <span id="contato">canal de contato a definir pelo time</span>.</p>
+  </main>
+
+  <footer class="rodape">
+    <p>Projeto acadêmico da disciplina Tópicos em Computação I, PUC Minas. Equipe: Breno de
+      Oliveira Brandão e Nicholas Pereira Cristofaro.</p>
+    <p id="atribuicao"></p>
+  </footer>
+
+  <script src="como-funciona.js" defer></script>
+</body>
+</html>

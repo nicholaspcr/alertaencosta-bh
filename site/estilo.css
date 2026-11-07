@@ -1,0 +1,91 @@
+:root {
+  --fundo: #ffffff;
+  --texto: #1d1d1b;
+  --suave: #4a4a46;
+  --borda: #c9c6bd;
+  --aviso-fundo: #fff4e0;
+  --aviso-borda: #8a5a00;
+  --habitual: #1f5f3a;
+  --elevado: #7a4a00;
+  --muito-elevado: #8f1d1d;
+  --insuficiente: #3d3d3d;
+  --link: #1d4f8a;
+  --foco: #1d4f8a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 16px 32px;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+a { color: var(--link); }
+a:focus-visible, select:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+
+.topo h1 { margin: 16px 0 0; font-size: 1.6rem; }
+.subtitulo { margin: 0 0 12px; color: var(--suave); }
+
+.aviso {
+  border: 2px solid var(--aviso-borda);
+  background: var(--aviso-fundo);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+.aviso p { margin: 4px 0; }
+
+.rotulo-campo { display: block; margin-top: 20px; font-weight: 600; }
+select {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 6px;
+  font-size: 1rem;
+  padding: 8px;
+  border: 2px solid var(--borda);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--texto);
+}
+
+#resultado h2 { margin: 20px 0 8px; font-size: 1.25rem; }
+
+.nivel {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 6px 12px;
+  border: 2px solid currentColor;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.nivel.habitual { color: var(--habitual); }
+.nivel.elevado { color: var(--elevado); }
+.nivel.muito-elevado { color: var(--muito-elevado); }
+.nivel.insuficiente { color: var(--insuficiente); border-style: dashed; }
+
+.motivos { margin-top: 0; }
+
+.evidencias { display: grid; grid-template-columns: 1fr; gap: 2px; margin: 12px 0; }
+.evidencias dt { font-weight: 600; margin-top: 6px; }
+.evidencias dd { margin: 0; }
+
+.nota { color: var(--suave); font-size: 0.95rem; }
+.nota.destaque { color: var(--texto); border-left: 4px solid var(--aviso-borda); padding-left: 8px; }
+
+.erro { color: var(--muito-elevado); font-weight: 600; }
+
+.rodape { margin-top: 24px; border-top: 1px solid var(--borda); font-size: 0.9rem; color: var(--suave); }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { border-bottom: 1px solid var(--borda); padding: 4px 6px; text-align: left; }
+.tabela-rolavel { overflow-x: auto; }
+
+@media (min-width: 560px) {
+  .evidencias { grid-template-columns: 14rem 1fr; }
+  .evidencias dt, .evidencias dd { margin-top: 4px; }
+}
