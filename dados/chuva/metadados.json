@@ -1,0 +1,29 @@
+{
+  "fonte": "Open-Meteo Historical Weather API (ECMWF IFS)",
+  "modelo_meteorologico": "ecmwf_ifs",
+  "pontos": {
+    "A521": {
+      "nome": "Pampulha",
+      "latitude": -19.8839,
+      "longitude": -43.9694
+    },
+    "F501": {
+      "nome": "Cercadinho",
+      "latitude": -19.98,
+      "longitude": -43.9586
+    }
+  },
+  "inicio_utc": "2020-12-01T00:00:00+00:00",
+  "fim_utc": "2026-01-01T00:00:00+00:00",
+  "horas_sem_valor": {
+    "A521": 0,
+    "F501": 0
+  },
+  "maximos_mm": {
+    "A521": 23.5,
+    "F501": 34.3
+  },
+  "sha256": "00286548351224a98f14818ae37bd76caf2bbb0def1eade72240193563abe6fc",
+  "coletado_em": "2026-11-07T21:03:04+00:00",
+  "atribuicao": "Dados meteorológicos: Open-Meteo.com (CC BY 4.0), modelo ECMWF IFS."
+}
