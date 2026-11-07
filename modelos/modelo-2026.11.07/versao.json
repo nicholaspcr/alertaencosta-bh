@@ -1,0 +1,602 @@
+{
+  "id": "modelo-2026.11.07",
+  "tipo": "baseline",
+  "baseline_em_uso": true,
+  "versao_dados": "dados-e89b27388420",
+  "C_logistica": 0.01,
+  "validacao_C_brier": {
+    "0.01": 0.17721164059230157,
+    "0.1": 0.17738414263879784,
+    "1.0": 0.17749625544989503,
+    "10.0": 0.17751510713931296
+  },
+  "metricas_teste": {
+    "baseline": {
+      "auc": 0.5279532023089609,
+      "brier": 0.17114729870203788,
+      "n": 1342
+    },
+    "logistica": {
+      "auc": 0.5231377130291369,
+      "brier": 0.16830136594842351,
+      "n": 1342
+    },
+    "arvore": {
+      "auc": 0.4979676333150082,
+      "brier": 0.16599776746460806,
+      "n": 1342
+    }
+  },
+  "aprovacao": {
+    "baseline": {
+      "m01_supera_baseline": true,
+      "m06_falhas": []
+    },
+    "logistica": {
+      "m01_supera_baseline": false,
+      "m06_falhas": []
+    },
+    "arvore": {
+      "m01_supera_baseline": false,
+      "m06_falhas": [
+        [
+          "BARREIRO",
+          1
+        ],
+        [
+          "BARREIRO",
+          2
+        ],
+        [
+          "BARREIRO",
+          3
+        ],
+        [
+          "BARREIRO",
+          4
+        ],
+        [
+          "BARREIRO",
+          5
+        ],
+        [
+          "BARREIRO",
+          6
+        ],
+        [
+          "BARREIRO",
+          7
+        ],
+        [
+          "BARREIRO",
+          8
+        ],
+        [
+          "BARREIRO",
+          9
+        ],
+        [
+          "BARREIRO",
+          10
+        ],
+        [
+          "BARREIRO",
+          11
+        ],
+        [
+          "BARREIRO",
+          12
+        ],
+        [
+          "CENTRO-SUL",
+          1
+        ],
+        [
+          "CENTRO-SUL",
+          2
+        ],
+        [
+          "CENTRO-SUL",
+          3
+        ],
+        [
+          "CENTRO-SUL",
+          4
+        ],
+        [
+          "CENTRO-SUL",
+          5
+        ],
+        [
+          "CENTRO-SUL",
+          6
+        ],
+        [
+          "CENTRO-SUL",
+          7
+        ],
+        [
+          "CENTRO-SUL",
+          8
+        ],
+        [
+          "CENTRO-SUL",
+          9
+        ],
+        [
+          "CENTRO-SUL",
+          10
+        ],
+        [
+          "CENTRO-SUL",
+          11
+        ],
+        [
+          "CENTRO-SUL",
+          12
+        ],
+        [
+          "LESTE",
+          1
+        ],
+        [
+          "LESTE",
+          2
+        ],
+        [
+          "LESTE",
+          3
+        ],
+        [
+          "LESTE",
+          4
+        ],
+        [
+          "LESTE",
+          5
+        ],
+        [
+          "LESTE",
+          6
+        ],
+        [
+          "LESTE",
+          7
+        ],
+        [
+          "LESTE",
+          8
+        ],
+        [
+          "LESTE",
+          9
+        ],
+        [
+          "LESTE",
+          10
+        ],
+        [
+          "LESTE",
+          11
+        ],
+        [
+          "LESTE",
+          12
+        ],
+        [
+          "NORDESTE",
+          1
+        ],
+        [
+          "NORDESTE",
+          2
+        ],
+        [
+          "NORDESTE",
+          3
+        ],
+        [
+          "NORDESTE",
+          4
+        ],
+        [
+          "NORDESTE",
+          5
+        ],
+        [
+          "NORDESTE",
+          6
+        ],
+        [
+          "NORDESTE",
+          7
+        ],
+        [
+          "NORDESTE",
+          8
+        ],
+        [
+          "NORDESTE",
+          9
+        ],
+        [
+          "NORDESTE",
+          10
+        ],
+        [
+          "NORDESTE",
+          11
+        ],
+        [
+          "NORDESTE",
+          12
+        ],
+        [
+          "NOROESTE",
+          1
+        ],
+        [
+          "NOROESTE",
+          2
+        ],
+        [
+          "NOROESTE",
+          3
+        ],
+        [
+          "NOROESTE",
+          4
+        ],
+        [
+          "NOROESTE",
+          5
+        ],
+        [
+          "NOROESTE",
+          6
+        ],
+        [
+          "NOROESTE",
+          7
+        ],
+        [
+          "NOROESTE",
+          8
+        ],
+        [
+          "NOROESTE",
+          9
+        ],
+        [
+          "NOROESTE",
+          10
+        ],
+        [
+          "NOROESTE",
+          11
+        ],
+        [
+          "NOROESTE",
+          12
+        ],
+        [
+          "NORTE",
+          1
+        ],
+        [
+          "NORTE",
+          2
+        ],
+        [
+          "NORTE",
+          3
+        ],
+        [
+          "NORTE",
+          4
+        ],
+        [
+          "NORTE",
+          5
+        ],
+        [
+          "NORTE",
+          6
+        ],
+        [
+          "NORTE",
+          7
+        ],
+        [
+          "NORTE",
+          8
+        ],
+        [
+          "NORTE",
+          9
+        ],
+        [
+          "NORTE",
+          10
+        ],
+        [
+          "NORTE",
+          11
+        ],
+        [
+          "NORTE",
+          12
+        ],
+        [
+          "OESTE",
+          1
+        ],
+        [
+          "OESTE",
+          2
+        ],
+        [
+          "OESTE",
+          3
+        ],
+        [
+          "OESTE",
+          4
+        ],
+        [
+          "OESTE",
+          5
+        ],
+        [
+          "OESTE",
+          6
+        ],
+        [
+          "OESTE",
+          7
+        ],
+        [
+          "OESTE",
+          8
+        ],
+        [
+          "OESTE",
+          9
+        ],
+        [
+          "OESTE",
+          10
+        ],
+        [
+          "OESTE",
+          11
+        ],
+        [
+          "OESTE",
+          12
+        ],
+        [
+          "PAMPULHA",
+          1
+        ],
+        [
+          "PAMPULHA",
+          2
+        ],
+        [
+          "PAMPULHA",
+          3
+        ],
+        [
+          "PAMPULHA",
+          4
+        ],
+        [
+          "PAMPULHA",
+          5
+        ],
+        [
+          "PAMPULHA",
+          6
+        ],
+        [
+          "PAMPULHA",
+          7
+        ],
+        [
+          "PAMPULHA",
+          8
+        ],
+        [
+          "PAMPULHA",
+          9
+        ],
+        [
+          "PAMPULHA",
+          10
+        ],
+        [
+          "PAMPULHA",
+          11
+        ],
+        [
+          "PAMPULHA",
+          12
+        ],
+        [
+          "VENDA NOVA",
+          1
+        ],
+        [
+          "VENDA NOVA",
+          2
+        ],
+        [
+          "VENDA NOVA",
+          3
+        ],
+        [
+          "VENDA NOVA",
+          4
+        ],
+        [
+          "VENDA NOVA",
+          5
+        ],
+        [
+          "VENDA NOVA",
+          6
+        ],
+        [
+          "VENDA NOVA",
+          7
+        ],
+        [
+          "VENDA NOVA",
+          8
+        ],
+        [
+          "VENDA NOVA",
+          9
+        ],
+        [
+          "VENDA NOVA",
+          10
+        ],
+        [
+          "VENDA NOVA",
+          11
+        ],
+        [
+          "VENDA NOVA",
+          12
+        ]
+      ]
+    }
+  },
+  "comparacao_vigente": null,
+  "limiares": [
+    0.3409236315620292,
+    0.4089044049686796
+  ],
+  "explicacao": {
+    "tipo": "taxa por regional",
+    "valores": {
+      "BARREIRO": 0.319913330808455,
+      "CENTRO-SUL": 0.209768856355164,
+      "LESTE": 0.3080337920130593,
+      "NORDESTE": 0.3183798088207024,
+      "NOROESTE": 0.1964520710479533,
+      "NORTE": 0.3220252592504398,
+      "OESTE": 0.13502914892695722,
+      "PAMPULHA": 0.2769475395023264,
+      "VENDA NOVA": 0.24573779665268589
+    }
+  },
+  "contagens_faixa_72h": {
+    "BARREIRO": [
+      393,
+      168,
+      119,
+      41,
+      9
+    ],
+    "CENTRO-SUL": [
+      723,
+      250,
+      218,
+      105,
+      43
+    ],
+    "LESTE": [
+      642,
+      244,
+      163,
+      85,
+      43
+    ],
+    "NORDESTE": [
+      435,
+      134,
+      124,
+      51,
+      15
+    ],
+    "NOROESTE": [
+      210,
+      76,
+      42,
+      19,
+      3
+    ],
+    "NORTE": [
+      727,
+      220,
+      196,
+      88,
+      88
+    ],
+    "OESTE": [
+      381,
+      136,
+      103,
+      33,
+      20
+    ],
+    "PAMPULHA": [
+      218,
+      71,
+      21,
+      20,
+      18
+    ],
+    "VENDA NOVA": [
+      300,
+      107,
+      54,
+      49,
+      14
+    ]
+  },
+  "faixas_72h_mm": [
+    0.0,
+    10.0,
+    30.0,
+    60.0,
+    100.0
+  ],
+  "maximos_chuva_mm": {
+    "A521": 23.5,
+    "F501": 34.3
+  },
+  "regional_ponto": {
+    "BARREIRO": "F501",
+    "CENTRO-SUL": "F501",
+    "OESTE": "F501",
+    "LESTE": "A521",
+    "NORDESTE": "A521",
+    "NOROESTE": "A521",
+    "NORTE": "A521",
+    "PAMPULHA": "A521",
+    "VENDA NOVA": "A521"
+  },
+  "n_treino": 5877,
+  "n_teste": 1342,
+  "periodo_treino": [
+    "2021-01-04",
+    "2024-12-30"
+  ],
+  "periodo_teste": [
+    "2025-01-02",
+    "2025-12-30"
+  ],
+  "semente": 20261206,
+  "n_bootstrap": 200,
+  "bibliotecas": {
+    "python": "3.13.17",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1"
+  },
+  "tempo_treino_s": 3.2
+}
