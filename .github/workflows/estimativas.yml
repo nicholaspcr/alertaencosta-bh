@@ -28,11 +28,21 @@ jobs:
           cache: pip
       - name: Instalar dependências fixadas
         run: pip install -r requirements.txt
-      - name: Estimar
+      - id: pages
+        uses: actions/configure-pages@v6
+      - id: estimar
+        name: Estimar
+        continue-on-error: true
         run: python -m alertaencosta.estimar --saida site/estimativas.json
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
+      - name: Conferir idade da página publicada
+        if: steps.estimar.outcome == 'failure'
+        run: |
+          echo "::warning::Coleta falhou; a página mantém a última estimativa."
+          python -m alertaencosta.idade_publicada "${{ steps.pages.outputs.base_url }}/estimativas.json" --max-horas 24
+      - if: steps.estimar.outcome == 'success'
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: publicacao
+        if: steps.estimar.outcome == 'success'
         uses: actions/deploy-pages@v5
