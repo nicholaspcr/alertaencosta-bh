@@ -21,6 +21,13 @@ Decisões tomadas na implementação que a Arquitetura, a Lista de Requisitos ou
 - **Regra dos 10% de horas ausentes:** vale para as janelas de 72 h, 7 dias e 30 dias (D-07). A janela de 24 h está contida na de 72 h e não tem regra própria. **A CONFIRMAR** o limite de 10%.
 - **Leitura acima do máximo histórico:** é descartada (RNF12). Como o máximo do modelo meteorológico é baixo (23,5 mm/h na A521 e 34,3 mm/h na F501, 2021–2025), uma chuva extrema real seria descartada e o acumulado ficaria menor. Para não mostrar nível baixo num dia de chuva forte, a regional do ponto passa a "dados insuficientes" se houver leitura acima do máximo nas últimas 72 h. Regra a mais, no espírito de RF03.
 
+## Operação no GitHub Actions
+
+- **Falhas do Open-Meteo nos runners do GitHub (13–15/11/2026):** várias execuções falharam com timeout no handshake TLS e com HTTP 429. Nossa cota (cerca de 16 chamadas por dia) não explica isso: os runners compartilham IPs com muitos outros usuários do Open-Meteo.
+- **Repetição:** cada chamada tenta até 3 vezes, com esperas de 10 s e 30 s, em erro de rede e em HTTP 429 ou 5xx.
+- **Falha de coleta não derruba a execução:** o passo de estimativa pode falhar sem falhar a execução; nesse caso nada é publicado e a página mantém a última estimativa (RNF03). A linha de log com `"sucesso": false` continua registrando a falha (RF07).
+- **Alerta só quando importa:** depois de uma coleta com falha, a execução confere a idade da página publicada e falha se ela passar de 24 horas, um dia antes de a página passar sozinha a "dados insuficientes" (48 h).
+
 ## Mapeamento regional → ponto de chuva (A CONFIRMAR)
 
 Ponto mais próximo do centro aproximado de cada regional: Barreiro, Centro-Sul e Oeste usam F501 (Cercadinho); Leste, Nordeste, Noroeste, Norte, Pampulha e Venda Nova usam A521 (Pampulha). Leste fica quase à mesma distância dos dois.

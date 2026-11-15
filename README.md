@@ -42,7 +42,7 @@ make testes        # testes sem rede, com dados sintéticos e respostas gravadas
 2. Em *Settings → Pages*, escolha *Source: GitHub Actions*.
 3. Publique uma versão (`make publicar VERSAO=...`), faça commit e dispare o workflow `estimativas`.
 
-O workflow roda a cada 3 horas. O GitHub desativa agendamentos depois de 60 dias sem atividade em repositório público: confira o histórico de execuções toda semana. Se o agendamento parar, a página passa sozinha a "dados insuficientes" depois de 48 horas.
+O workflow roda a cada 3 horas. Se a coleta no Open-Meteo falhar (o IP compartilhado dos runners do GitHub às vezes recebe HTTP 429 ou timeout), cada chamada é repetida até 3 vezes; persistindo a falha, a execução termina com aviso, sem publicar, e a página mantém a última estimativa. A execução só falha (e o GitHub manda e-mail) quando a página publicada passa de 24 horas sem atualização. O GitHub desativa agendamentos depois de 60 dias sem atividade em repositório público: confira o histórico de execuções toda semana. Se o agendamento parar, a página passa sozinha a "dados insuficientes" depois de 48 horas.
 
 ## Dados e licenças
 
