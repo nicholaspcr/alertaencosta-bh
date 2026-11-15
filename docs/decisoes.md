@@ -26,6 +26,7 @@ Decisões tomadas na implementação que a Arquitetura, a Lista de Requisitos ou
 - **Falhas do Open-Meteo nos runners do GitHub (13–15/11/2026):** várias execuções falharam com timeout no handshake TLS e com HTTP 429. Nossa cota (cerca de 16 chamadas por dia) não explica isso: os runners compartilham IPs com muitos outros usuários do Open-Meteo.
 - **Repetição:** cada chamada tenta até 3 vezes, com esperas de 10 s e 30 s, em erro de rede e em HTTP 429 ou 5xx.
 - **Falha de coleta não derruba a execução:** o passo de estimativa pode falhar sem falhar a execução; nesse caso nada é publicado e a página mantém a última estimativa (RNF03). A linha de log com `"sucesso": false` continua registrando a falha (RF07).
+- **Tentativa a cada hora (15/11/2026):** a coleta passou de 3 em 3 horas para toda hora. Cada execução roda num runner com outro IP, então mais execuções dão mais chances de passar pelo bloqueio do Open-Meteo. O GitHub também atrasa e descarta parte dos agendamentos (cerca de 3 execuções por dia em vez de 8 entre 08 e 12/11). São até 48 chamadas por dia, bem abaixo do limite de 10.000. A Arquitetura previa 3 horas; a estimativa continua sendo recalculada sempre que a coleta funciona.
 - **Alerta só quando importa:** depois de uma coleta com falha, a execução confere a idade da página publicada e falha se ela passar de 24 horas, um dia antes de a página passar sozinha a "dados insuficientes" (48 h).
 
 ## Mapeamento regional → ponto de chuva (A CONFIRMAR)

@@ -9,7 +9,7 @@ Projeto acadêmico da disciplina Tópicos em Computação I (PUC Minas). Equipe:
 | Ciclo | Etapas | Comando | Onde roda |
 |---|---|---|---|
 | A, treino (semestral, manual) | 1 a 7 | `make treino`, depois `make publicar VERSAO=...` | notebook do time |
-| B, operação (a cada 3 h) | 8 a 11 | `python -m alertaencosta.estimar` | GitHub Actions |
+| B, operação (a cada hora) | 8 a 11 | `python -m alertaencosta.estimar` | GitHub Actions |
 | Página | 12 | `site/` | GitHub Pages |
 
 - **Rótulos:** vistorias da URBEL no Portal de Dados Abertos da PBH, em `dados/urbel/`, registradas com hash em `dados/urbel/lotes.json`.
@@ -42,11 +42,11 @@ make testes        # testes sem rede, com dados sintéticos e respostas gravadas
 2. Em *Settings → Pages*, escolha *Source: GitHub Actions*.
 3. Publique uma versão (`make publicar VERSAO=...`), faça commit e dispare o workflow `estimativas`.
 
-O workflow roda a cada 3 horas. Se a coleta no Open-Meteo falhar (o IP compartilhado dos runners do GitHub às vezes recebe HTTP 429 ou timeout), cada chamada é repetida até 3 vezes; persistindo a falha, a execução termina com aviso, sem publicar, e a página mantém a última estimativa. A execução só falha (e o GitHub manda e-mail) quando a página publicada passa de 24 horas sem atualização. O GitHub desativa agendamentos depois de 60 dias sem atividade em repositório público: confira o histórico de execuções toda semana. Se o agendamento parar, a página passa sozinha a "dados insuficientes" depois de 48 horas.
+O workflow roda a cada hora (a Arquitetura previa 3 horas; o motivo está em `docs/decisoes.md`). Se a coleta no Open-Meteo falhar (o IP compartilhado dos runners do GitHub às vezes recebe HTTP 429 ou timeout), cada chamada é repetida até 3 vezes; persistindo a falha, a execução termina com aviso, sem publicar, e a página mantém a última estimativa. A execução só falha (e o GitHub manda e-mail) quando a página publicada passa de 24 horas sem atualização. O GitHub desativa agendamentos depois de 60 dias sem atividade em repositório público: confira o histórico de execuções toda semana. Se o agendamento parar, a página passa sozinha a "dados insuficientes" depois de 48 horas.
 
 ## Dados e licenças
 
 - Vistorias: URBEL, Portal de Dados Abertos da PBH.
-- Dados meteorológicos: [Open-Meteo.com](https://open-meteo.com) (CC BY 4.0), uso não comercial, cerca de 16 chamadas por dia.
+- Dados meteorológicos: [Open-Meteo.com](https://open-meteo.com) (CC BY 4.0), uso não comercial, até 48 chamadas por dia.
 
 As decisões de projeto e seus motivos estão em [`docs/decisoes.md`](docs/decisoes.md).
