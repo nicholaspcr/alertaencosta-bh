@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -15,12 +16,16 @@ from alertaencosta import config
 
 COLUNAS = ["estacao", "data_hora_utc", "precipitacao_mm"]
 TEMPO_LIMITE_S = 30
+ESPERAS_ENTRE_TENTATIVAS_S = (10, 30)
+CODIGOS_HTTP_TEMPORARIOS = frozenset({429, 500, 502, 503, 504})
 
 BuscarJson = Callable[[str], dict]
 
 
 class ErroColeta(RuntimeError):
-    pass
+    def __init__(self, mensagem: str, temporario: bool = False):
+        super().__init__(mensagem)
+        self.temporario = temporario
 
 
 @dataclass(frozen=True)
@@ -36,17 +41,30 @@ class FonteChuva(Protocol):
         ...
 
 
-def buscar_json_http(url: str) -> dict:
+def _buscar_uma_vez(url: str, abrir) -> dict:
     pedido = urllib.request.Request(url, headers={"User-Agent": "alertaencosta-bh"})
     try:
-        with urllib.request.urlopen(pedido, timeout=TEMPO_LIMITE_S) as resposta:
+        with abrir(pedido, timeout=TEMPO_LIMITE_S) as resposta:
             return json.loads(resposta.read().decode("utf-8"))
     except urllib.error.HTTPError as erro:
-        raise ErroColeta(f"HTTP {erro.code} em {urllib.parse.urlsplit(url).netloc}") from erro
+        temporario = erro.code in CODIGOS_HTTP_TEMPORARIOS
+        raise ErroColeta(f"HTTP {erro.code} em {urllib.parse.urlsplit(url).netloc}",
+                         temporario) from erro
     except (urllib.error.URLError, TimeoutError, OSError) as erro:
-        raise ErroColeta(f"erro de rede: {erro}") from erro
+        raise ErroColeta(f"erro de rede: {erro}", True) from erro
     except json.JSONDecodeError as erro:
         raise ErroColeta("resposta não é JSON") from erro
+
+
+def buscar_json_http(url: str, abrir=urllib.request.urlopen, dormir=time.sleep) -> dict:
+    for espera in ESPERAS_ENTRE_TENTATIVAS_S:
+        try:
+            return _buscar_uma_vez(url, abrir)
+        except ErroColeta as erro:
+            if not erro.temporario:
+                raise
+            dormir(espera)
+    return _buscar_uma_vez(url, abrir)
 
 
 def tabela_vazia() -> pd.DataFrame:

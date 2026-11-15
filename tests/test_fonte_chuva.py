@@ -80,3 +80,60 @@ def test_ti04_d06_dado_invalido_descartado_e_contado():
     r = limpar_chuva(tabela, {"A521": 23.5}, AGORA)
     assert r.descartes == {"sem_valor": 0, "negativa": 1, "acima_maximo": 1, "data_futura": 1}
     assert list(r.tabela["precipitacao_mm"]) == [1.0, 2.0]
+
+
+class _Resposta:
+    def __init__(self, corpo: bytes):
+        self.corpo = corpo
+
+    def read(self):
+        return self.corpo
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+
+def _abridor(falhas: list):
+    chamadas = []
+
+    def abrir(pedido, timeout):
+        chamadas.append(pedido.full_url)
+        if falhas:
+            raise falhas.pop(0)
+        return _Resposta(b'{"ok": true}')
+    return abrir, chamadas
+
+
+def test_ti02_falha_de_rede_temporaria_e_repetida():
+    import urllib.error
+    from alertaencosta.fonte_chuva import buscar_json_http
+
+    abrir, chamadas = _abridor([urllib.error.URLError("handshake timed out"), TimeoutError()])
+    esperas = []
+    assert buscar_json_http("https://api.open-meteo.com/x", abrir=abrir, dormir=esperas.append) == {"ok": True}
+    assert len(chamadas) == 3 and len(esperas) == 2
+
+
+def test_ti02_falha_persistente_vira_erro_coleta():
+    import urllib.error
+    from alertaencosta.fonte_chuva import buscar_json_http
+
+    abrir, chamadas = _abridor([urllib.error.URLError("timeout")] * 5)
+    with pytest.raises(ErroColeta, match="rede"):
+        buscar_json_http("https://api.open-meteo.com/x", abrir=abrir, dormir=lambda s: None)
+    assert len(chamadas) == 3
+
+
+@pytest.mark.parametrize("codigo,tentativas", [(429, 3), (503, 3), (400, 1)])
+def test_ti02_http_repete_so_erros_temporarios(codigo, tentativas):
+    import urllib.error
+    from alertaencosta.fonte_chuva import buscar_json_http
+
+    erro = urllib.error.HTTPError("https://api.open-meteo.com/x", codigo, "erro", {}, None)
+    abrir, chamadas = _abridor([erro] * 5)
+    with pytest.raises(ErroColeta, match=f"HTTP {codigo}"):
+        buscar_json_http("https://api.open-meteo.com/x", abrir=abrir, dormir=lambda s: None)
+    assert len(chamadas) == tentativas
